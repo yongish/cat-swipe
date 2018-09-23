@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.nimblechapps.tinder_swiping_cards", appContext.getPackageName());
+        assertEquals("com.zhiyong.cat_swipe", appContext.getPackageName());
     }
 }

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.nimblechapps.tinder_swiping_cards"
+        applicationId "com.zhiyong.cat_swipe"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

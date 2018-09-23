@@ -229,60 +229,60 @@ public class MainActivity extends AppCompatActivity {
     private void getArrayData() {
 
         UserDataModel model = new UserDataModel();
-        model.setName("Nimblechapps 1 ");
+        model.setName("Card 1 ");
         model.setTotalLikes("3 M");
         model.setPhoto(com.zhiyong.cat_swipe.R.drawable.image1);
         userDataModelArrayList.add(model);
 
 
         UserDataModel model2 = new UserDataModel();
-        model2.setName("Nimblechapps 2 ");
+        model2.setName("Card 2 ");
         model2.setTotalLikes("2 M");
         model2.setPhoto(com.zhiyong.cat_swipe.R.drawable.image2);
         userDataModelArrayList.add(model2);
 
         UserDataModel model3 = new UserDataModel();
-        model3.setName("Nimblechapps 3 ");
+        model3.setName("Card 3 ");
         model3.setTotalLikes("3 M");
         model3.setPhoto(com.zhiyong.cat_swipe.R.drawable.image3);
         userDataModelArrayList.add(model3);
 
 
         UserDataModel model4 = new UserDataModel();
-        model4.setName("Nimblechapps 4 ");
+        model4.setName("Card 4 ");
         model4.setTotalLikes("4 M");
         model4.setPhoto(com.zhiyong.cat_swipe.R.drawable.image1);
         userDataModelArrayList.add(model4);
 
 
         UserDataModel model5 = new UserDataModel();
-        model5.setName("Nimblechapps 5 ");
+        model5.setName("Card 5 ");
         model5.setTotalLikes("5 M");
         model5.setPhoto(com.zhiyong.cat_swipe.R.drawable.image2);
         userDataModelArrayList.add(model5);
 
         UserDataModel model6 = new UserDataModel();
-        model6.setName("Nimblechapps 6 ");
+        model6.setName("Card 6 ");
         model6.setTotalLikes("6 M");
         model6.setPhoto(com.zhiyong.cat_swipe.R.drawable.image3);
         userDataModelArrayList.add(model6);
 
 
         UserDataModel model7 = new UserDataModel();
-        model7.setName("Nimblechapps 7 ");
+        model7.setName("Card 7 ");
         model7.setTotalLikes("7 M");
         model7.setPhoto(com.zhiyong.cat_swipe.R.drawable.image1);
         userDataModelArrayList.add(model7);
 
 
         UserDataModel model8 = new UserDataModel();
-        model8.setName("Nimblechapps 8 ");
+        model8.setName("Card 8 ");
         model8.setTotalLikes("8 M");
         model8.setPhoto(com.zhiyong.cat_swipe.R.drawable.image2);
         userDataModelArrayList.add(model8);
 
         UserDataModel model9 = new UserDataModel();
-        model9.setName("Nimblechapps 9 ");
+        model9.setName("Card 9 ");
         model9.setTotalLikes("9 M");
         model9.setPhoto(com.zhiyong.cat_swipe.R.drawable.image3);
         userDataModelArrayList.add(model9);
