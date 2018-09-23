@@ -1,4 +1,4 @@
-package com.nimblechapps.tinder_swiping_cards;
+package com.zhiyong.cat_swipe;
 
 /**
  * Created by user26 on 29/7/17.

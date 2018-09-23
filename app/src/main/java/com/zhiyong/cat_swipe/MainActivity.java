@@ -1,4 +1,4 @@
-package com.nimblechapps.tinder_swiping_cards;
+package com.zhiyong.cat_swipe;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
+        setContentView(com.zhiyong.cat_swipe.R.layout.activity_main);
 
         context = MainActivity.this;
 
-        parentView = (RelativeLayout) findViewById(R.id.main_layoutview);
+        parentView = (RelativeLayout) findViewById(com.zhiyong.cat_swipe.R.id.main_layoutview);
 
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
 
@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
             LayoutInflater inflate =
                     (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            final View containerView = inflate.inflate(R.layout.custom_tinder_layout, null);
+            final View containerView = inflate.inflate(com.zhiyong.cat_swipe.R.layout.custom_tinder_layout, null);
 
-            ImageView userIMG = (ImageView) containerView.findViewById(R.id.userIMG);
-            RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(R.id.relative_container);
+            ImageView userIMG = (ImageView) containerView.findViewById(com.zhiyong.cat_swipe.R.id.userIMG);
+            RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(com.zhiyong.cat_swipe.R.id.relative_container);
 
 
             LayoutParams layoutParams = new LayoutParams(
@@ -87,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
             final TextView tvLike = new TextView(context);
             tvLike.setLayoutParams(layoutTvParams);
             tvLike.setPadding(10, 10, 10, 10);
-            tvLike.setBackgroundDrawable(getResources().getDrawable(R.drawable.btnlikeback));
+            tvLike.setBackgroundDrawable(getResources().getDrawable(com.zhiyong.cat_swipe.R.drawable.btnlikeback));
             tvLike.setText("LIKE");
             tvLike.setGravity(Gravity.CENTER);
             tvLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             tvLike.setTextSize(25);
-            tvLike.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
+            tvLike.setTextColor(ContextCompat.getColor(context, com.zhiyong.cat_swipe.R.color.colorRed));
             tvLike.setX(20);
             tvLike.setY(100);
             tvLike.setRotation(-50);
@@ -104,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
             final TextView tvUnLike = new TextView(context);
             tvUnLike.setLayoutParams(layoutTvParams);
             tvUnLike.setPadding(10, 10, 10, 10);
-            tvUnLike.setBackgroundDrawable(getResources().getDrawable(R.drawable.btnlikeback));
+            tvUnLike.setBackgroundDrawable(getResources().getDrawable(com.zhiyong.cat_swipe.R.drawable.btnlikeback));
             tvUnLike.setText("UNLIKE");
             tvUnLike.setGravity(Gravity.CENTER);
             tvUnLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             tvUnLike.setTextSize(25);
-            tvUnLike.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
+            tvUnLike.setTextColor(ContextCompat.getColor(context, com.zhiyong.cat_swipe.R.color.colorRed));
             tvUnLike.setX(500);
             tvUnLike.setY(150);
             tvUnLike.setRotation(50);
@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
             relativeLayoutContainer.addView(tvUnLike);
 
 
-            TextView tvName = (TextView) containerView.findViewById(R.id.tvName);
-            TextView tvTotLikes = (TextView) containerView.findViewById(R.id.tvTotalLikes);
+            TextView tvName = (TextView) containerView.findViewById(com.zhiyong.cat_swipe.R.id.tvName);
+            TextView tvTotLikes = (TextView) containerView.findViewById(com.zhiyong.cat_swipe.R.id.tvTotalLikes);
 
 
             tvName.setText(userDataModelArrayList.get(i).getName());
@@ -231,60 +231,60 @@ public class MainActivity extends AppCompatActivity {
         UserDataModel model = new UserDataModel();
         model.setName("Nimblechapps 1 ");
         model.setTotalLikes("3 M");
-        model.setPhoto(R.drawable.image1);
+        model.setPhoto(com.zhiyong.cat_swipe.R.drawable.image1);
         userDataModelArrayList.add(model);
 
 
         UserDataModel model2 = new UserDataModel();
         model2.setName("Nimblechapps 2 ");
         model2.setTotalLikes("2 M");
-        model2.setPhoto(R.drawable.image2);
+        model2.setPhoto(com.zhiyong.cat_swipe.R.drawable.image2);
         userDataModelArrayList.add(model2);
 
         UserDataModel model3 = new UserDataModel();
         model3.setName("Nimblechapps 3 ");
         model3.setTotalLikes("3 M");
-        model3.setPhoto(R.drawable.image3);
+        model3.setPhoto(com.zhiyong.cat_swipe.R.drawable.image3);
         userDataModelArrayList.add(model3);
 
 
         UserDataModel model4 = new UserDataModel();
         model4.setName("Nimblechapps 4 ");
         model4.setTotalLikes("4 M");
-        model4.setPhoto(R.drawable.image1);
+        model4.setPhoto(com.zhiyong.cat_swipe.R.drawable.image1);
         userDataModelArrayList.add(model4);
 
 
         UserDataModel model5 = new UserDataModel();
         model5.setName("Nimblechapps 5 ");
         model5.setTotalLikes("5 M");
-        model5.setPhoto(R.drawable.image2);
+        model5.setPhoto(com.zhiyong.cat_swipe.R.drawable.image2);
         userDataModelArrayList.add(model5);
 
         UserDataModel model6 = new UserDataModel();
         model6.setName("Nimblechapps 6 ");
         model6.setTotalLikes("6 M");
-        model6.setPhoto(R.drawable.image3);
+        model6.setPhoto(com.zhiyong.cat_swipe.R.drawable.image3);
         userDataModelArrayList.add(model6);
 
 
         UserDataModel model7 = new UserDataModel();
         model7.setName("Nimblechapps 7 ");
         model7.setTotalLikes("7 M");
-        model7.setPhoto(R.drawable.image1);
+        model7.setPhoto(com.zhiyong.cat_swipe.R.drawable.image1);
         userDataModelArrayList.add(model7);
 
 
         UserDataModel model8 = new UserDataModel();
         model8.setName("Nimblechapps 8 ");
         model8.setTotalLikes("8 M");
-        model8.setPhoto(R.drawable.image2);
+        model8.setPhoto(com.zhiyong.cat_swipe.R.drawable.image2);
         userDataModelArrayList.add(model8);
 
         UserDataModel model9 = new UserDataModel();
         model9.setName("Nimblechapps 9 ");
         model9.setTotalLikes("9 M");
-        model9.setPhoto(R.drawable.image3);
+        model9.setPhoto(com.zhiyong.cat_swipe.R.drawable.image3);
         userDataModelArrayList.add(model9);
 
         Collections.reverse(userDataModelArrayList);

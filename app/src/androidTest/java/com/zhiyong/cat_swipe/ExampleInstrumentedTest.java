@@ -1,4 +1,4 @@
-package com.nimblechapps.tinder_swiping_cards;
+package com.zhiyong.cat_swipe;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
