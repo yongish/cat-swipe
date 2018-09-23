@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                             if (x_cord >= screenCenter) {
-                                containerView.setRotation((float) ((x_cord - screenCenter) * (Math.PI / 32)));
+                                containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 32)));
                                 if (x_cord > (screenCenter + (screenCenter / 2))) {
                                     tvLike.setAlpha(1);
                                     if (x_cord > (windowwidth - (screenCenter / 4))) {
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                                 tvUnLike.setAlpha(0);
                             } else {
                                 // rotate image while moving
-                                containerView.setRotation((float) ((x_cord - screenCenter) * (Math.PI / 32)));
+                                containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 32)));
                                 if (x_cord < (screenCenter / 2)) {
                                     tvUnLike.setAlpha(1);
                                     if (x_cord < screenCenter / 4) {
