@@ -36,17 +36,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name : "
-                        android:textColor="#000" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Name : "-->
+                        <!--android:textColor="#000" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Likes : "
-                        android:textColor="#000" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Likes : "-->
+                        <!--android:textColor="#000" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -54,19 +54,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="title"
-                        android:textColor="#000" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvName"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="title"-->
+                        <!--android:textColor="#000" />-->
 
-                    <TextView
-                        android:id="@+id/tvTotalLikes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="10K"
-                        android:textColor="#000" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvTotalLikes"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="10K"-->
+                        <!--android:textColor="#000" />-->
                 </LinearLayout>
 
             </LinearLayout>

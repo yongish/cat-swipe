@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                                     containerView.setY(0);
                                     containerView.setRotation(0);
                                 } else if (Likes == 1) {
-                                    Toast.makeText(context, "UNLIKE", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, R.string.not_cute, Toast.LENGTH_SHORT).show();
                                     Log.e("Event_Status :-> ", "UNLIKE");
                                     parentView.removeView(containerView);
 
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                                     loadACard(queue, windowwidth);
 
                                 } else if (Likes == 2) {
-                                    Toast.makeText(context, "LIKED", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, R.string.cute, Toast.LENGTH_SHORT).show();
                                     Log.e("Event_Status :-> ", "Liked");
                                     parentView.removeView(containerView);
 
