@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 bitmap = createSquaredBitmap(bitmap);
 
                 BitmapDrawable background = new BitmapDrawable(getResources(), bitmap);
-                userIMG.setBackgroundDrawable(background);
+                userIMG.setBackground(background);
 
 
                 LayoutParams layoutTvParams = new LayoutParams(
@@ -144,9 +144,8 @@ public class MainActivity extends AppCompatActivity {
                 final TextView tvLike = new TextView(context);
                 tvLike.setLayoutParams(layoutTvParams);
                 tvLike.setPadding(10, 10, 10, 10);
-                tvLike.setBackgroundDrawable(getResources().getDrawable(R.drawable.btnlikeback));
-//                tvLike.setBackground(getResources().getDrawable(R.drawable.btnlikeback));
-                tvLike.setText("LIKE");
+                tvLike.setBackground(getResources().getDrawable(R.drawable.btnlikeback));
+                tvLike.setText(R.string.cute);
                 tvLike.setGravity(Gravity.CENTER);
                 tvLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 tvLike.setTextSize(25);
@@ -162,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
                 final TextView tvUnLike = new TextView(context);
                 tvUnLike.setLayoutParams(layoutTvParams);
                 tvUnLike.setPadding(10, 10, 10, 10);
-                tvUnLike.setBackgroundDrawable(getResources().getDrawable(R.drawable.btnlikeback));
-                tvUnLike.setText("UNLIKE");
+                tvUnLike.setBackground(getResources().getDrawable(R.drawable.btnlikeback));
+                tvUnLike.setText(R.string.not_cute);
                 tvUnLike.setGravity(Gravity.CENTER);
                 tvUnLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 tvUnLike.setTextSize(25);
