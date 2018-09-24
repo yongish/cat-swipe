@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int windowwidth = displaymetrics.widthPixels;
+        windowwidth = displaymetrics.widthPixels;
 
         screenCenter = windowwidth / 2;
 
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Put in a single image when user swipes.
-            loadACard(queue);
-            loadACard(queue);
+            loadACard(queue, windowwidth);
+            loadACard(queue, windowwidth);
         } catch (IOException e) {
             System.err.println("Error in loading paths.");
         }
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         return dstBmp;
     }
 
-    private void loadACard(final Queue<String> queue) {
+    private void loadACard(final Queue<String> queue, final int windowwidth) {
         // Dequeue a path. TODO: Queue can run out.
         String path = queue.remove();
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 tvUnLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 tvUnLike.setTextSize(25);
                 tvUnLike.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
-                tvUnLike.setX(500);
+                tvUnLike.setX(windowwidth-350);
                 tvUnLike.setY(150);
                 tvUnLike.setRotation(50);
                 tvUnLike.setAlpha(alphaValue);
@@ -208,11 +208,11 @@ public class MainActivity extends AppCompatActivity {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     if (x_cord > (screenCenter + (screenCenter / 2))) {
                                         tvLike.setAlpha(1);
-                                        if (x_cord > (windowwidth - (screenCenter / 4))) {
+//                                        if (x_cord > (windowwidth - (screenCenter / 4))) {
                                             Likes = 2;
-                                        } else {
-                                            Likes = 0;
-                                        }
+//                                        } else {
+//                                            Likes = 0;
+//                                        }
                                     } else {
                                         Likes = 0;
                                         tvLike.setAlpha(0);
@@ -223,11 +223,11 @@ public class MainActivity extends AppCompatActivity {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     if (x_cord < (screenCenter / 2)) {
                                         tvUnLike.setAlpha(1);
-                                        if (x_cord < screenCenter / 4) {
+//                                        if (x_cord < screenCenter / 4) {
                                             Likes = 1;
-                                        } else {
-                                            Likes = 0;
-                                        }
+//                                        } else {
+//                                            Likes = 0;
+//                                        }
                                     } else {
                                         Likes = 0;
                                         tvUnLike.setAlpha(0);
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                                     parentView.removeView(containerView);
 
                                     // Load the next picture.
-                                    loadACard(queue);
+                                    loadACard(queue, windowwidth);
 
                                 } else if (Likes == 2) {
                                     Toast.makeText(context, "LIKED", Toast.LENGTH_SHORT).show();
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                                     parentView.removeView(containerView);
 
                                     // Load the next picture.
-                                    loadACard(queue);
+                                    loadACard(queue, windowwidth);
                                 }
                                 break;
                             default:
