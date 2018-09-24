@@ -1,6 +1,5 @@
 package com.zhiyong.cat_swipe;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<UserDataModel> userDataModelArrayList;
     AsyncHttpClient client = new AsyncHttpClient();
 
-    @SuppressWarnings("deprecation")
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         parentView = findViewById(R.id.main_layoutview);
 
-        windowwidth = getWindowManager().getDefaultDisplay().getWidth();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int windowwidth = displaymetrics.widthPixels;
 
         screenCenter = windowwidth / 2;
 
@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 tvLike.setLayoutParams(layoutTvParams);
                 tvLike.setPadding(10, 10, 10, 10);
                 tvLike.setBackgroundDrawable(getResources().getDrawable(R.drawable.btnlikeback));
+//                tvLike.setBackground(getResources().getDrawable(R.drawable.btnlikeback));
                 tvLike.setText("LIKE");
                 tvLike.setGravity(Gravity.CENTER);
                 tvLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
