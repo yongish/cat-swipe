@@ -68,24 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
         userDataModelArrayList = new ArrayList<>();
 
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("paths.txt")));
-            String path;
-
-            // Read paths into an queue.
-            Queue<String> queue = new LinkedList<>();
-            while ((path = reader.readLine()) != null) {
-                queue.add(path);
-            }
-
-            // Put in a single image when user swipes.
-            loadACard(queue, windowwidth);
-            loadACard(queue, windowwidth);
-        } catch (IOException e) {
-            System.err.println("Error in loading paths.");
-        }
+        Queue<String> queue = fillQueue(new LinkedList<String>());
+        loadACard(queue, windowwidth);
+        loadACard(queue, windowwidth);
     }
 
     private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
@@ -99,8 +84,28 @@ public class MainActivity extends AppCompatActivity {
         return dstBmp;
     }
 
+    private Queue<String> fillQueue(Queue<String> queue) {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open("paths.txt")));
+            String path;
+
+            // Read paths into an queue.
+            while ((path = reader.readLine()) != null) {
+                queue.add(path);
+            }
+        } catch (IOException e) {
+            System.err.println("Error in loading paths.");
+        }
+        return queue;
+    }
+
     private void loadACard(final Queue<String> queue, final int windowwidth) {
         // Dequeue a path. TODO: Queue can run out.
+        if (queue.isEmpty()) {
+            fillQueue(queue);
+        }
         String path = queue.remove();
 
         Log.d("path", path);
@@ -208,11 +213,7 @@ public class MainActivity extends AppCompatActivity {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     if (x_cord > (screenCenter + (screenCenter / 2))) {
                                         tvLike.setAlpha(1);
-//                                        if (x_cord > (windowwidth - (screenCenter / 4))) {
-                                            Likes = 2;
-//                                        } else {
-//                                            Likes = 0;
-//                                        }
+                                        Likes = 2;
                                     } else {
                                         Likes = 0;
                                         tvLike.setAlpha(0);
@@ -223,11 +224,7 @@ public class MainActivity extends AppCompatActivity {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     if (x_cord < (screenCenter / 2)) {
                                         tvUnLike.setAlpha(1);
-//                                        if (x_cord < screenCenter / 4) {
-                                            Likes = 1;
-//                                        } else {
-//                                            Likes = 0;
-//                                        }
+                                        Likes = 1;
                                     } else {
                                         Likes = 0;
                                         tvUnLike.setAlpha(0);
