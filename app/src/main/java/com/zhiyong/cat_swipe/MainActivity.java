@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                                 y_cord = (int) event.getRawY();
 
                                 containerView.setX(x_cord - x);
-                                containerView.setY(y_cord - y);
+                                containerView.setY(100);
 
 
                                 if (x_cord >= screenCenter) {
