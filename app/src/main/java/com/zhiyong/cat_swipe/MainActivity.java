@@ -34,6 +34,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         userDataModelArrayList = new ArrayList<>();
 
-        Queue<String> queue = fillQueue(new LinkedList<String>());
+        List<String> queue = fillQueue(new LinkedList<String>());
         loadACard(queue, windowwidth);
         loadACard(queue, windowwidth);
     }
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         return dstBmp;
     }
 
-    private Queue<String> fillQueue(Queue<String> queue) {
+    private List<String> fillQueue(List<String> queue) {
         BufferedReader reader;
         try {
             reader = new BufferedReader(
@@ -98,15 +99,16 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             System.err.println("Error in loading paths.");
         }
+        Collections.shuffle(queue);
         return queue;
     }
 
-    private void loadACard(final Queue<String> queue, final int windowwidth) {
+    private void loadACard(final List<String> queue, final int windowwidth) {
         // Dequeue a path. TODO: Queue can run out.
         if (queue.isEmpty()) {
             fillQueue(queue);
         }
-        String path = queue.remove();
+        String path = queue.remove(0);
 
         Log.d("path", path);
         LayoutInflater inflate =
