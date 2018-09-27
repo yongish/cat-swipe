@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 tvUnLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 tvUnLike.setTextSize(25);
                 tvUnLike.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
-                tvUnLike.setX(windowwidth-350);
+                tvUnLike.setX(windowwidth-200);
                 tvUnLike.setY(150);
                 tvUnLike.setRotation(50);
                 tvUnLike.setAlpha(alphaValue);
