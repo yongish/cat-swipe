@@ -15,6 +15,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -74,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
         List<String> queue = fillQueue(new LinkedList<String>());
         loadACard(queue, windowwidth);
         loadACard(queue, windowwidth);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public void share(MenuItem mi) {
     }
 
     private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
@@ -237,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // rotate image while moving
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
-                                    if (x_cord < (screenCenter / 1)) {
+                                    if (x_cord < (screenCenter - screenCenter / 2)) {
                                         tvUnLike.setAlpha(1);
                                         Likes = 1;
                                     } else {
