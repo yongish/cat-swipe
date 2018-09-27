@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -15,10 +16,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     float alphaValue = 0;
     private Context context;
 
-    ArrayList<UserDataModel> userDataModelArrayList;
     AsyncHttpClient client = new AsyncHttpClient();
 
     @Override
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         screenCenter = windowwidth / 2;
 
-        userDataModelArrayList = new ArrayList<>();
 
         List<String> queue = fillQueue(new LinkedList<String>());
         loadACard(queue, windowwidth);
@@ -142,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 BitmapDrawable background = new BitmapDrawable(getResources(), bitmap);
                 userIMG.setBackground(background);
 
-
                 LayoutParams layoutTvParams = new LayoutParams(
                         LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
@@ -180,6 +181,14 @@ public class MainActivity extends AppCompatActivity {
                 tvUnLike.setAlpha(alphaValue);
                 relativeLayoutContainer.addView(tvUnLike);
 
+                final ImageView ivPaw = new ImageView(context);
+                ivPaw.setBackground(getResources().getDrawable(R.drawable.pink_paw));
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 200);
+                ivPaw.setLayoutParams(layoutParams);
+                ivPaw.setVisibility(View.INVISIBLE);
+                relativeLayoutContainer.addView(ivPaw);
+
+
                 // Touch listener on the image layout to swipe image right or left.
                 relativeLayoutContainer.setOnTouchListener(new OnTouchListener() {
 
@@ -209,6 +218,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 containerView.setX(x_cord - x);
                                 containerView.setY(100);
+
+                                ivPaw.setVisibility(View.VISIBLE);
+                                ivPaw.setX(x - 100);
+                                ivPaw.setY(y - 300);
 
 
                                 if (x_cord >= screenCenter) {
@@ -243,6 +256,8 @@ public class MainActivity extends AppCompatActivity {
                                 Log.e("X Point", "" + x_cord + " , Y " + y_cord);
                                 tvUnLike.setAlpha(0);
                                 tvLike.setAlpha(0);
+
+                                ivPaw.setVisibility(View.INVISIBLE);
 
                                 if (Likes == 0) {
                                     Toast.makeText(context, "NOTHING", Toast.LENGTH_SHORT).show();
