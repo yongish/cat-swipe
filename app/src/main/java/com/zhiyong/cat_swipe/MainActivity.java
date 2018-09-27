@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // rotate image while moving
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
-                                    if (x_cord < (screenCenter / 2)) {
+                                    if (x_cord < (screenCenter / 1)) {
                                         tvUnLike.setAlpha(1);
                                         Likes = 1;
                                     } else {
