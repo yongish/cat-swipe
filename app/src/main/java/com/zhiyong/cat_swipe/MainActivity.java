@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
 
     AsyncHttpClient client = new AsyncHttpClient();
+    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
         screenCenter = windowwidth / 2;
 
+        sharingIntent.setType("text/plain");
+        sharingIntent.setAction(Intent.ACTION_SEND);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT,
+                "Swipe on cute cats: https://play.google.com/store/apps/details?id=com.zhiyong.cat_swipe");
 
         List<String> queue = fillQueue(new LinkedList<String>());
         loadACard(queue, windowwidth);
@@ -82,12 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void share(MenuItem mi) {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.setAction(Intent.ACTION_SEND);
-        sharingIntent.putExtra(Intent.EXTRA_TEXT,
-                "Swipe on cute cats: https://play.google.com/store/apps/details?id=com.zhiyong.cat_swipe");
-        startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+        startActivity(Intent.createChooser(sharingIntent, "Let's swipe on cute cats!"));
     }
 
     private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
@@ -223,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 oldX = event.getRawX();
 
-
                                 Log.v("On touch", x + " " + y);
                                 break;
                             case MotionEvent.ACTION_MOVE:
@@ -241,12 +240,12 @@ public class MainActivity extends AppCompatActivity {
                                 ivPaw.setX(x - 100);
                                 ivPaw.setY(y - 300);
 
-                                if (deltaX > 10) {
+                                if (deltaX > 5) {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     tvLike.setAlpha(1);
                                     Likes = 2;
                                     tvUnLike.setAlpha(0);
-                                } else if (deltaX < -10){
+                                } else if (deltaX < -5){
                                     // rotate image while moving
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     tvUnLike.setAlpha(1);
