@@ -1,11 +1,11 @@
 package com.zhiyong.cat_swipe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -16,11 +16,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
@@ -38,11 +35,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -86,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void share(MenuItem mi) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.setAction(Intent.ACTION_SEND);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT,
+                "Swipe on cute cats: https://play.google.com/store/apps/details?id=com.zhiyong.cat_swipe");
+        startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
     }
 
     private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
