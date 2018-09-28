@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     int windowwidth;
     int screenCenter;
     int x_cord, y_cord, x, y;
+    float oldX, newX, deltaX;
     int Likes = 0;
     public RelativeLayout parentView;
     float alphaValue = 0;
@@ -220,11 +221,15 @@ public class MainActivity extends AppCompatActivity {
                                 x = (int) event.getX();
                                 y = (int) event.getY();
 
+                                oldX = event.getRawX();
+
 
                                 Log.v("On touch", x + " " + y);
                                 break;
                             case MotionEvent.ACTION_MOVE:
 
+                                newX = event.getRawX();
+                                deltaX = newX - oldX;
                                 x_cord = (int) event.getRawX();
                                 // smoother animation.
                                 y_cord = (int) event.getRawY();
@@ -236,27 +241,16 @@ public class MainActivity extends AppCompatActivity {
                                 ivPaw.setX(x - 100);
                                 ivPaw.setY(y - 300);
 
-
-                                if (x_cord >= screenCenter) {
+                                if (deltaX > 10) {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
-                                    if (x_cord > (screenCenter + (screenCenter / 2))) {
-                                        tvLike.setAlpha(1);
-                                        Likes = 2;
-                                    } else {
-                                        Likes = 0;
-                                        tvLike.setAlpha(0);
-                                    }
+                                    tvLike.setAlpha(1);
+                                    Likes = 2;
                                     tvUnLike.setAlpha(0);
-                                } else {
+                                } else if (deltaX < -10){
                                     // rotate image while moving
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
-                                    if (x_cord < (screenCenter - screenCenter / 2)) {
-                                        tvUnLike.setAlpha(1);
-                                        Likes = 1;
-                                    } else {
-                                        Likes = 0;
-                                        tvUnLike.setAlpha(0);
-                                    }
+                                    tvUnLike.setAlpha(1);
+                                    Likes = 1;
                                     tvLike.setAlpha(0);
                                 }
 
