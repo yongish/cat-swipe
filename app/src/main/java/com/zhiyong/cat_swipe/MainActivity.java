@@ -240,22 +240,22 @@ public class MainActivity extends AppCompatActivity {
                                 ivPaw.setX(x - 100);
                                 ivPaw.setY(y - 300);
 
-                                if (deltaX > 5) {
+                                Likes = 0;
+                                if (deltaX > 8) {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     tvLike.setAlpha(1);
-                                    Likes = 2;
                                     tvUnLike.setAlpha(0);
-                                } else if (deltaX < -5){
+                                    Likes = 2;
+                                } else if (deltaX < -8){
                                     // rotate image while moving
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     tvUnLike.setAlpha(1);
-                                    Likes = 1;
                                     tvLike.setAlpha(0);
+                                    Likes = 1;
                                 }
 
                                 break;
                             case MotionEvent.ACTION_UP:
-
                                 x_cord = (int) event.getRawX();
                                 y_cord = (int) event.getRawY();
 
@@ -297,6 +297,8 @@ public class MainActivity extends AppCompatActivity {
 
                 parentView.addView(containerView, 0);
             }
+
+            // Todo: Try to load a card again if load fails.
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
