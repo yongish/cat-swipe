@@ -241,6 +241,8 @@ public class MainActivity extends AppCompatActivity {
                                 ivPaw.setY(y - 300);
 
                                 Likes = 0;
+                                tvLike.setAlpha(0);
+                                tvUnLike.setAlpha(0);
                                 if (deltaX > 8) {
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     tvLike.setAlpha(1);
