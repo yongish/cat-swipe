@@ -3,4 +3,7 @@
     <string name="cute">Cute</string>
     <string name="not_cute">ok</string>
     <string name="share">Share</string>
+    <string name="message_developer">Message the developer.</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
 </resources>

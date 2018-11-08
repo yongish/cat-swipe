@@ -1,6 +1,7 @@
 package com.zhiyong.cat_swipe;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,7 +10,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,6 +24,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -38,25 +43,48 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
+    public RelativeLayout parentView;
     int windowwidth;
     int screenCenter;
     int x_cord, y_cord, x, y;
     float oldX, newX, deltaX;
     int Likes = 0;
-    public RelativeLayout parentView;
     float alphaValue = 0;
-    private Context context;
-
     AsyncHttpClient client = new AsyncHttpClient();
     Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+    private Context context;
+
+    private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
+        int dim = Math.max(srcBmp.getWidth(), srcBmp.getHeight());
+        Bitmap dstBmp = Bitmap.createBitmap(dim, dim, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(dstBmp);
+        canvas.drawColor(Color.WHITE);
+        canvas.drawBitmap(srcBmp, (dim - srcBmp.getWidth()) / 2, (dim - srcBmp.getHeight()) / 2, null);
+
+        return dstBmp;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
@@ -88,17 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void share(MenuItem mi) {
         startActivity(Intent.createChooser(sharingIntent, "Let's swipe on cute cats!"));
-    }
-
-    private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
-        int dim = Math.max(srcBmp.getWidth(), srcBmp.getHeight());
-        Bitmap dstBmp = Bitmap.createBitmap(dim, dim, Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(dstBmp);
-        canvas.drawColor(Color.WHITE);
-        canvas.drawBitmap(srcBmp, (dim - srcBmp.getWidth()) / 2, (dim - srcBmp.getHeight()) / 2, null);
-
-        return dstBmp;
     }
 
     private List<String> fillQueue(List<String> queue) {
@@ -151,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                Bitmap bitmap = BitmapFactory.decodeByteArray(response,0, response.length - 1);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(response, 0, response.length - 1);
 
                 bitmap = createSquaredBitmap(bitmap);
 
@@ -189,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 tvUnLike.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 tvUnLike.setTextSize(25);
                 tvUnLike.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
-                tvUnLike.setX(windowwidth-200);
+                tvUnLike.setX(windowwidth - 200);
                 tvUnLike.setY(150);
                 tvUnLike.setRotation(50);
                 tvUnLike.setAlpha(alphaValue);
@@ -248,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                                     tvLike.setAlpha(1);
                                     tvUnLike.setAlpha(0);
                                     Likes = 2;
-                                } else if (deltaX < -8){
+                                } else if (deltaX < -8) {
                                     // rotate image while moving
                                     containerView.setRotation((float) ((screenCenter - x_cord) * (Math.PI / 256)));
                                     tvUnLike.setAlpha(1);
@@ -313,5 +330,84 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void message(MenuItem item) {
+        // Show pop up dialog box.
+        AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View mView = inflater.inflate(R.layout.dialog_message_developer, null);
+        final EditText editText = mView.findViewById(R.id.editText);
+
+        myAlertBuilder.setTitle(R.string.message_developer);
+        myAlertBuilder.setView(mView);
+
+
+        myAlertBuilder
+                .setPositiveButton(R.string.send, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // todo: send the message.
+
+                        // Email it to myself.
+                        // Java not Android.
+                        Properties props = new Properties();
+                        props.put("mail.smtp.host", "smtp.gmail.com");
+                        props.put("mail.smtp.socketFactory.port", "465");
+                        props.put("mail.smtp.socketFactory.class",
+                                "javax.net.ssl.SSLSocketFactory");
+                        props.put("mail.smtp.auth", "true");
+                        props.put("mail.smtp.port", "465");
+
+                        Session session = Session.getDefaultInstance(props,
+                                new javax.mail.Authenticator() {
+                                    protected PasswordAuthentication getPasswordAuthentication() {
+                                        return new PasswordAuthentication(
+                                                BuildConfig.username,
+                                                BuildConfig.password
+                                        );
+                                    }
+                                });
+
+                        try {
+                            Message message = new MimeMessage(session);
+                            message.setFrom(new InternetAddress(BuildConfig.email));
+                            message.setRecipients(Message.RecipientType.TO,
+                                    InternetAddress.parse(BuildConfig.email));
+                            message.setSubject("Cat Swipe Message");
+
+                            String content = editText.getText().toString();
+                            message.setText(content);
+
+                            Transport.send(message);
+
+                            Toast.makeText(context, "Sent", Toast.LENGTH_SHORT).show();
+                        } catch (MessagingException e) {
+                            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        myAlertBuilder.show();
+
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                editText.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputMethodManager inputMethodManager= (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                });
+            }
+        });
+        editText.requestFocus();
     }
 }
